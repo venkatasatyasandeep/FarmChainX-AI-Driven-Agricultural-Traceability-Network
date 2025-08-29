@@ -1,0 +1,208 @@
+.distributor-dashboard {
+  background-color: #b6b767;
+  padding: 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+  font-family: "Inter", sans-serif;
+  color: #000000;
+}
+
+.distributor-dashboard h1 {
+  text-align: center;
+  text-decoration: underline;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #465ab3;
+  margin-bottom: 10px;
+}
+
+.distributor-dashboard > p {
+  color: #ffffff;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+/* --- Tabs --- */
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #eaeaea;
+  margin-bottom: 25px;
+  background: #fff;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 14px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #7f8c8d;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.tabs button:hover {
+  color: #000000;
+}
+
+.tabs button.active {
+  color: #000000;
+  font-weight: 600;
+  background: linear-gradient(135deg, #f1f1f1, #6cacb8);
+}
+
+.tabs button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #000000;
+  border-radius: 2px;
+}
+
+/* --- Table Container --- */
+.table-container {
+  overflow-x: auto;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.table-container:hover {
+  transform: translateY(-2px);
+}
+
+/* --- Tables --- */
+.orders-table, .inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table th, .orders-table td,
+.inventory-table th, .inventory-table td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 15px;
+}
+
+.orders-table th, .inventory-table th {
+  background-color: #fafafa;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #636e72;
+}
+
+/* --- Status Badges --- */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-block;
+  text-transform: capitalize;
+  transition: transform 0.2s ease;
+}
+
+.status-badge:hover {
+  transform: scale(1.05);
+}
+
+.status-badge.pending {
+  background: #fff4e6;
+  color: #e17055;
+}
+
+.status-badge.processing {
+  background: #e0fcff;
+  color: #00cec9;
+}
+
+.status-badge.shipped {
+  background: #eaf2ff;
+  color: #0984e3;
+}
+
+.status-badge.fulfilled {
+  background: #eafaf1;
+  color: #00b894;
+}
+
+.status-badge.low {
+  background: #ffeaea;
+  color: #d63031;
+}
+
+/* --- Action Buttons --- */
+.btn-action {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #3498db, #6c5ce7);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.btn-action:hover {
+  background: linear-gradient(135deg, #2980b9, #4834d4);
+  transform: translateY(-2px);
+}
+
+/* --- Analytics Cards --- */
+.analytics-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.stat-card h3 {
+  margin: 0 0 12px 0;
+  color: #636e72;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: 800;
+  color: #2d3436;
+  margin: 0;
+}
+
+/* --- Empty State --- */
+.no-orders {
+  text-align: center;
+  padding: 50px;
+  color: #7f8c8d;
+  font-style: italic;
+  font-size: 1.1rem;
+  background: #fafafa;
+  border-radius: 10px;
+}
