@@ -3,7 +3,6 @@
 ![Frontend](https://img.shields.io/badge/Frontend-React-blue)
 ![Backend](https://img.shields.io/badge/Backend-SpringBoot-brightgreen)
 ![Database](https://img.shields.io/badge/Database-MySQL-orange)
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 FarmChainX is a full-stack platform for **tracking agricultural produce** with AI-based tools. It enables farmers, distributors, and consumers to monitor the journey of agricultural products, ensuring **transparency and traceability** in the supply chain.
 
@@ -73,8 +72,6 @@ Run the frontend (npm start).
 Access the app at http://localhost:3000.
 The frontend communicates with backend APIs at http://localhost:8080.
 
-🖼 Screenshots
-Add screenshots here if available, e.g.:
 
 
 💡 Notes
