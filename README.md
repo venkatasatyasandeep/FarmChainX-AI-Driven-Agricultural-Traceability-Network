@@ -15,9 +15,6 @@ FarmChainX-AI-Driven-Agricultural-Traceability-Network/
 ├─ frontend/ # React frontend
 └─ backend/ # Spring Boot backend (Eclipse project)
 
-yaml
-Copy code
-
 ---
 
 ## ⚙️ Tech Stack
@@ -36,7 +33,7 @@ Copy code
 1. Open terminal in the `frontend` folder:
 
 ```bash
-cd frontend
+
 Install dependencies:
 
 
