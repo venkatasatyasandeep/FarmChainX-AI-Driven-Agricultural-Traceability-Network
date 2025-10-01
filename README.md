@@ -40,13 +40,10 @@ Copy code
 cd frontend
 Install dependencies:
 
-bash
-Copy code
+
 npm install
 Start the development server:
 
-bash
-Copy code
 npm start
 Open http://localhost:3000 in your browser.
 
@@ -56,15 +53,13 @@ Open Eclipse IDE and import the backend folder as an existing Maven project.
 Configure MySQL database in application.properties:
 
 properties
-Copy code
+
 spring.datasource.url=jdbc:mysql://localhost:3306/farmxchain
 spring.datasource.username=root
 spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
 Create the database:
 
-sql
-Copy code
 CREATE DATABASE farmxchain;
 Run FarmxchainAuthApplication.java as a Java Application. The backend will start on http://localhost:8080.
 
@@ -81,10 +76,7 @@ The frontend communicates with backend APIs at http://localhost:8080.
 🖼 Screenshots
 Add screenshots here if available, e.g.:
 
-bash
-Copy code
-frontend/src/assets/screenshot1.png
-frontend/src/assets/screenshot2.png
+
 💡 Notes
 Ensure ports 3000 (frontend) and 8080 (backend) are free.
 
