@@ -1,57 +1,91 @@
-# FarmChainX - AI-Driven Agricultural Traceability Network
+# 🌾 FarmChainX - AI-Driven Agricultural Traceability Network
 
-FarmChainX is a full-stack application for tracking agricultural produce using AI-driven tools. The project consists of a frontend (React) and a backend (Spring Boot/Eclipse + MySQL).
+![Frontend](https://img.shields.io/badge/Frontend-React-blue)
+![Backend](https://img.shields.io/badge/Backend-SpringBoot-brightgreen)
+![Database](https://img.shields.io/badge/Database-MySQL-orange)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-## Available Scripts
-
-### Frontend (React)
-
-In the `frontend` directory, you can run:
-
-#### `npm install`
-Installs all dependencies.
-
-#### `npm start`
-Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page reloads automatically when you make changes.
-
-#### `npm run build`
-Builds the app for production in the `build` folder. Optimizes the build for the best performance.
+FarmChainX is a full-stack platform for **tracking agricultural produce** with AI-based tools. It enables farmers, distributors, and consumers to monitor the journey of agricultural products, ensuring **transparency and traceability** in the supply chain.
 
 ---
 
-### Backend (Spring Boot / Eclipse)
+## 📂 Project Structure
 
-1. Open Eclipse IDE.  
-2. Import the `backend` folder as an existing Maven project.  
-3. Configure MySQL:
+FarmChainX-AI-Driven-Agricultural-Traceability-Network/
+│
+├─ frontend/ # React frontend
+└─ backend/ # Spring Boot backend (Eclipse project)
 
-```properties
+yaml
+Copy code
+
+---
+
+## ⚙️ Tech Stack
+
+- **Frontend:** React.js, JavaScript, HTML, CSS  
+- **Backend:** Java, Spring Boot, Maven  
+- **Database:** MySQL  
+- **Tools:** Eclipse IDE, Node.js, npm, Git  
+
+---
+
+## 🚀 Getting Started
+
+### Frontend (React)
+
+1. Open terminal in the `frontend` folder:
+
+```bash
+cd frontend
+Install dependencies:
+
+bash
+Copy code
+npm install
+Start the development server:
+
+bash
+Copy code
+npm start
+Open http://localhost:3000 in your browser.
+
+Backend (Spring Boot / Eclipse)
+Open Eclipse IDE and import the backend folder as an existing Maven project.
+
+Configure MySQL database in application.properties:
+
+properties
+Copy code
 spring.datasource.url=jdbc:mysql://localhost:3306/farmxchain
 spring.datasource.username=root
 spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
+Create the database:
 
-Create the database in MySQL:
-
+sql
+Copy code
 CREATE DATABASE farmxchain;
+Run FarmxchainAuthApplication.java as a Java Application. The backend will start on http://localhost:8080.
 
-
-Run FarmxchainAuthApplication.java as a Java Application. The backend will start on http://localhost:8080
-.
-
-Running the Full Application
-
+🔄 Running the Full Application
 Start MySQL.
 
 Run the backend in Eclipse.
 
-Run the frontend (npm start) in the frontend folder.
+Run the frontend (npm start).
 
-Access the app at http://localhost:3000
-. The frontend communicates with backend APIs at http://localhost:8080.
+Access the app at http://localhost:3000.
+The frontend communicates with backend APIs at http://localhost:8080.
 
-Notes
+🖼 Screenshots
+Add screenshots here if available, e.g.:
 
+bash
+Copy code
+frontend/src/assets/screenshot1.png
+frontend/src/assets/screenshot2.png
+💡 Notes
 Ensure ports 3000 (frontend) and 8080 (backend) are free.
 
-The backend must be running for frontend features to work.
+The backend must be running for the frontend features to work properly.
