@@ -1,77 +1,78 @@
+// pages/Login.js
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { loginUser } from "./api";
 import "../styles/auth.css";
 
 const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
-  // ... existing code ...
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
- const handleLogin = (e) => {
-   e.preventDefault();
-   const savedUser = JSON.parse(localStorage.getItem("user"));
-  if (savedUser && savedUser.email === email && savedUser.password === password) {
-    // Determine the appropriate dashboard based on role
-    let dashboardPath = "/";
-    switch (savedUser.role) {
-      case "farmer":
-        dashboardPath = "/farmer-dashboard";
-        break;
-      case "admin":
-        dashboardPath = "/admin-dashboard";
-        break;
-      case "distributor":
-        dashboardPath = "/distributor-dashboard";
-        break;
-      case "retailer":
-        dashboardPath = "/retailer-dashboard";
-        break;
-      case "customer":
-        dashboardPath = "/customer-dashboard";
-        break;
-      default:
-        alert("Invalid role!");
+    try {
+      const user = await loginUser(email, password);
+      setUser(user);
+
+      // Role-based dashboard routing
+      const dashboardPaths = {
+        admin: "/admin-dashboard",
+        farmer: "/farmer-dashboard",
+        distributor: "/distributor-dashboard",
+        retailer: "/retailer-dashboard",
+        customer: "/customer-dashboard",
+      };
+
+      const path = dashboardPaths[user.role?.toLowerCase()];
+      if (!path) throw new Error("Invalid user role");
+
+      navigate(path);
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setLoading(false);
     }
-    
-    navigate(dashboardPath);
-  } else {
-    alert("Invalid credentials!");
-  }
- };
+  };
 
-// ... rest of the code ...
   return (
     <div className="auth-wrapper">
       <div className="auth-box">
         <h2>Welcome Back 👋</h2>
         <p>Please login to continue</p>
+
         <form onSubmit={handleLogin}>
           <div className="input-group">
             <label>Email</label>
-            <input 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              required 
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
 
           <div className="input-group">
             <label>Password</label>
-            <input 
-              type="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              required 
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
 
-          <button className="btn-primary" type="submit">Login</button>
+          <button className="btn-primary" type="submit" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
         </form>
+
         <p className="switch-link">
-          Don't have an account? <a href="/register">Register</a>
+          Don’t have an account? <Link to="/register">Register</Link>
         </p>
       </div>
     </div>

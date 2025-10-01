@@ -1,0 +1,214 @@
+/* ================================
+   Products Page Container
+================================ */
+.products-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  background: linear-gradient(135deg, #fceabb, #f8b500, #ff7e5f, #feb47b);
+  background-size: 300% 300%;
+  animation: bgAnimation 15s ease infinite;
+}
+
+/* Background animation */
+@keyframes bgAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ================================
+   Page Title
+================================ */
+.page-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  letter-spacing: 2px;
+}
+
+/* ================================
+   Empty Message
+================================ */
+.empty-msg {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #444;
+}
+
+h2, p {
+  text-align: center;
+  color: #333;
+}
+
+/* ================================
+   Header Section (Search + Buttons)
+================================ */
+.page-header {
+  display: flex;
+  justify-content: space-between; /* search left, buttons right */
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.search-bar input,
+.search-input {
+  padding: 10px 14px;
+  border: 2px solid #ff9800;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 280px;
+  max-width: 100%;
+  transition: 0.3s ease;
+}
+
+.search-bar input:focus,
+.search-input:focus {
+  border-color: #e91e63;
+  outline: none;
+  box-shadow: 0 0 8px rgba(233, 30, 99, 0.6);
+}
+
+/* Header Buttons Group */
+.header-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+/* Add & Logout Buttons */
+.add-btn,
+.logout-btn {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.add-btn {
+  background: linear-gradient(45deg, #ff6f61, #ff4081);
+}
+
+.add-btn:hover {
+  background: linear-gradient(45deg, #ff4081, #ff1744);
+  transform: scale(1.05);
+}
+
+.logout-btn {
+  background: linear-gradient(45deg, #29b6f6, #0288d1);
+}
+
+.logout-btn:hover {
+  background: linear-gradient(45deg, #0288d1, #01579b);
+  transform: scale(1.05);
+}
+
+/* ================================
+   Table Wrapper
+================================ */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.products-table {
+  width: 100%;
+  min-width: 800px;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.products-table th,
+.products-table td {
+  border: 1px solid #ddd;
+  padding: 14px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.products-table th {
+  background: linear-gradient(45deg, #8e44ad, #3498db);
+  color: white;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+.products-table tr:nth-child(even) {
+  background-color: #f3f3f3;
+}
+
+.products-table tr:hover {
+  background-color: #fbe9e7;
+  transition: 0.3s ease;
+}
+
+.product-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #eee;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+/* ================================
+   Actions
+================================ */
+.actions-cell button {
+  margin-right: 10px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: #fff;
+  transition: 0.3s ease;
+}
+
+.edit-btn {
+  background: linear-gradient(45deg, #4caf50, #2e7d32);
+}
+
+.edit-btn:hover {
+  background: linear-gradient(45deg, #2e7d32, #1b5e20);
+  transform: scale(1.05);
+}
+
+.delete-btn {
+  background: linear-gradient(45deg, #f44336, #c62828);
+}
+
+.delete-btn:hover {
+  background: linear-gradient(45deg, #c62828, #b71c1c);
+  transform: scale(1.05);
+}

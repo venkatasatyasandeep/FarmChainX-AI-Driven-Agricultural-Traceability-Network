@@ -1,26 +1,62 @@
+// pages/Register.js
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 import "../styles/auth.css";
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: "customer", // default role
+  });
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    // ✅ Build user object
-    const newUser = { name, email, password, role };
+    // Password match validation
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
 
-    // ✅ Save in localStorage
-    localStorage.setItem("user", JSON.stringify(newUser));
+    const userData = {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      role: formData.role, // backend will enforce non-admin
+    };
 
-    alert("Registration successful! Please login.");
-    navigate("/login"); // ✅ go to login
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/users/register",
+        userData
+      );
+
+      alert("Registration Success: " + response.data.message);
+      console.log("Registered User:", response.data.user);
+
+      // Redirect to login page
+      navigate("/login");
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        alert("Registration Failed: " + error.response.data.message);
+      } else {
+        alert("Registration Failed: " + error.message);
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -30,92 +66,78 @@ const Register = () => {
         <p>Join us and select your role</p>
 
         <form onSubmit={handleRegister}>
-          {/* Name */}
           <div className="input-group">
             <label>Name</label>
-            <input 
-              type="text" 
-              value={name} 
-              onChange={(e) => setName(e.target.value)} 
-              required 
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
             />
           </div>
 
-          {/* Email */}
           <div className="input-group">
             <label>Email</label>
-            <input 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              required 
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
             />
           </div>
 
-          {/* Password */}
           <div className="input-group">
             <label>Password</label>
-            <input 
-              type="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              required 
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
             />
           </div>
 
-          {/* Roles */}
+          <div className="input-group">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
           <div className="input-group">
             <label>Select Role</label>
             <div className="roles">
-              <label>
-                <input 
-                  type="radio" 
-                  value="admin" 
-                  checked={role === "admin"}
-                  onChange={(e) => setRole(e.target.value)}
-                /> Admin
-              </label>
-              <label>
-                <input 
-                  type="radio" 
-                  value="farmer" 
-                  checked={role === "farmer"}
-                  onChange={(e) => setRole(e.target.value)}
-                /> Farmer
-              </label>
-              <label>
-                <input 
-                  type="radio" 
-                  value="distributor" 
-                  checked={role === "distributor"}
-                  onChange={(e) => setRole(e.target.value)}
-                /> Distributor
-              </label>
-              <label>
-                <input 
-                  type="radio" 
-                  value="retailer" 
-                  checked={role === "retailer"}
-                  onChange={(e) => setRole(e.target.value)}
-                /> Retailer
-              </label>
-              <label>
-                <input 
-                  type="radio" 
-                  value="customer" 
-                  checked={role === "customer"}
-                  onChange={(e) => setRole(e.target.value)}
-                /> Customer
-              </label>
+              {["farmer", "distributor", "retailer", "customer"].map(
+                (roleOption) => (
+                  <label key={roleOption}>
+                    <input
+                      type="radio"
+                      name="role"
+                      value={roleOption}
+                      checked={formData.role === roleOption}
+                      onChange={handleChange}
+                      required
+                    />{" "}
+                    {roleOption.charAt(0).toUpperCase() + roleOption.slice(1)}
+                  </label>
+                )
+              )}
             </div>
           </div>
 
-          {/* Submit Button */}
-          <button className="btn-primary" type="submit">Register</button>
+          <button className="btn-primary" type="submit" disabled={loading}>
+            {loading ? "Registering..." : "Register"}
+          </button>
         </form>
 
         <p className="switch-link">
-          Already have an account? <a href="/login">Login</a>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
     </div>

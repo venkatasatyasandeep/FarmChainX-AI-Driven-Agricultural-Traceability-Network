@@ -1,14 +1,18 @@
+// components/PrivateRoute.js
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-const PrivateRoute = ({ children }) => {
-  // Check if user is authenticated
-  const isAuthenticated = () => {
-    const user = localStorage.getItem("user");
-    return user !== null;
-  };
+const PrivateRoute = ({ children, allowedRoles = [] }) => {
+  const user = JSON.parse(localStorage.getItem("user") || "null");
 
-  return isAuthenticated() ? children : <Navigate to="/login" />;
+  if (!user) return <Navigate to="/login" />;
+
+  // Check if the user's role is allowed
+  if (allowedRoles.length > 0 && !allowedRoles.includes(user.role.toLowerCase())) {
+    return <Navigate to="/unauthorized" />;
+  }
+
+  return children;
 };
 
 export default PrivateRoute;
